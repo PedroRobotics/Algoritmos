@@ -15,7 +15,7 @@ int main() {
 
     printf("\nAntes da troca: x = %.1f, y = %.1f\n", x, y);
 
-    troca(&x, &y);
+    troca(&x, &y); // passa o endereço e não os valores
 
     printf("Após a troca: x = %.1f, y = %.1f\n\n", x, y);
 
