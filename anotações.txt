@@ -1,0 +1,11 @@
+Linguagem C
+
+    19 de março de 2026
+
+int a = 12; --> definimos a váriavel a como inteira
+
+int *p; --> * significa ponteiro, deifinimos a váriavel p que poderá apontar para váviaveis do tipo int
+
+p = &a; --> retorna o endereço em que a váriavel a está alocada
+
+*p = 100; --> armazena o valor "100" 
