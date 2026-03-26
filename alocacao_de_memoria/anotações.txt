@@ -1,0 +1,19 @@
+Linguagem C
+
+    26 de março de 2026
+
+alocação é a reserva da memória
+    Automática -> sempre fazemos
+        int i = 10;
+
+    Estática -> váriaveis criadas e inicializadas uma única vez no sistema
+        static int = 10;
+    
+    Dinâmica -> Muito controle sobre a memória
+
+int --> 4 bytes
+
+double --> 8 bytes
+
+ponteiro --> 4 bytes
+
