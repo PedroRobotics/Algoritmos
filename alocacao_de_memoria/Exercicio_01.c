@@ -11,10 +11,10 @@ de ponteiros.*/
 
 void preenche (int *
 v, int n, int x){
-    int *p = v; // p aponta para o primeiro elemento do vetor
+    int *p = v; 
     for (int i = 0; i < n; i++) {
-        *p = x; // atribui o valor x ao elemento apontado por p
-        p++; // avança para o próximo elemento
+        *p = x;
+        p++; 
     }
 }
 int main()
