@@ -25,5 +25,13 @@ Estabilidade na Ordenação
 
 ||-------------------------------------------------------------------------------------------||
 
-Quick Search
+QuickSort
+
+diferencial: pois aloca menos memória
+
+vai dividindo o vetor no meio e usando pivos para essa Divisão
+
+||-------------------------------------------------------------------------------------------||
+
+HeapSort
 
