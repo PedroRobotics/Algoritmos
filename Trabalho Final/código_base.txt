@@ -102,8 +102,8 @@ void* ler_valores_de_sensores(void* arg) {
         //printf("(%d,%d) - %02d:%02d:%02d\n",visita.coordenada.x, visita.coordenada.y, visita.hora->tm_hour, visita.hora->tm_min, visita.hora->tm_sec);
         
         /**** Implementar a leitura dos sensores aqui ****/
-        adicionar_distancia_historico(distancia_obstaculo());
-
+        
+        
         /**** Finalizar a leitura dos sensores aqui  ****/
         
         pthread_mutex_unlock(&mutex);
@@ -113,51 +113,6 @@ void* ler_valores_de_sensores(void* arg) {
 
 
 //**** Implementar todas as funções e estruturas de dados aqui ****/
-
-#define MAX_HISTORICO 1000
-
-// Estrutura circular que armazena o histórico de distâncias lidas pelos sensores
-typedef struct {
-    float distancias[MAX_HISTORICO];
-    int inicio;
-    int tamanho;
-} HistoricoDistancias;
-
-HistoricoDistancias historico = {{0}, 0, 0};
-pthread_mutex_t mutex_historico = PTHREAD_MUTEX_INITIALIZER;
-
-// Adiciona uma nova distância ao histórico, removendo a mais antiga se o buffer estiver cheio
-void adicionar_distancia_historico(float d) {
-    pthread_mutex_lock(&mutex_historico);
-    if (historico.tamanho < MAX_HISTORICO) {
-        historico.distancias[(historico.inicio + historico.tamanho) % MAX_HISTORICO] = d;
-        historico.tamanho++;
-    } else {
-        historico.distancias[historico.inicio] = d;
-        historico.inicio = (historico.inicio + 1) % MAX_HISTORICO;
-    }
-    pthread_mutex_unlock(&mutex_historico);
-}
-
-// Calcula a média das x leituras mais antigas atualmente armazenadas no histórico
-float media_x_leituras_antigas(int x) {
-    if (x <= 0) return 0;
-
-    pthread_mutex_lock(&mutex_historico);
-
-    if (x > historico.tamanho) {
-        x = historico.tamanho;
-    }
-
-    float soma = 0;
-    for (int i = 0; i < x; i++) {
-        soma += historico.distancias[(historico.inicio + i) % MAX_HISTORICO];
-    }
-
-    pthread_mutex_unlock(&mutex_historico);
-
-    return x > 0 ? soma / x : 0;
-}
 
 
 
@@ -205,15 +160,8 @@ int main() {
               visita = ultima_visita();
               printf("(%d,%d) - %02d:%02d:%02d\n",visita.coordenada.x, visita.coordenada.y, visita.hora->tm_hour, visita.hora->tm_min, visita.hora->tm_sec);
               break;
-           /**** Implementar as opções 3 a 7 aqui ****/
-           case 3: {
-              int x;
-              printf("Digite o valor de x: ");
-              scanf("%d", &x);
-              float media = media_x_leituras_antigas(x);
-              printf("Distância média nas %d leituras mais antigas: %.2f\n", x, media);
-              break;
-           }
+           /**** Implementar as opções 3 a 7 aqui ****/   
+           
            /**** Fim da implementação das opções 3 a 7  ****/
            case 9: 
               pthread_mutex_lock(&mutex);
